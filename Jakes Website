@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jakeskan.com</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #34495e;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .motivational-photo {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .social-links {
+      margin: 30px 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Jakeskan.com</h1>
+    <p>Your space for insights, ideas, and inspiration</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2>Hello!</h2>
+    <p>This is the beginning of something great. Stay tuned for more content on leadership, learning, and life from Jakeskan.com.</p>
+
+    <img src="https://images.unsplash.com/photo-1531983412531-1cde36f1ed1a?auto=format&fit=crop&w=1000&q=80" 
+         alt="Motivational" 
+         class="motivational-photo" />
+
+    <div class="social-links">
+      <p>📱 Phone: +254 712 345 678</p>
+      <a href="https://www.facebook.com/KanyuiraJakes" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/KanyuiraJakes" target="_blank">Instagram</a> |
+      <span style="color: gray;">LinkedIn (coming soon)</span>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Jakeskan.com | All rights reserved
+  </footer>
+
+</body>
+</html>
