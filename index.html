@@ -2,117 +2,427 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jakeskan | Ministry & Leadership</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* Reset and base */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
+      background: #f9fafb;
       color: #1f2937;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    /* Header */
     header {
-      background-color: #ffbf00;
-      color: #000;
-      padding: 3rem 2rem;
+      background: #ffbf00;
+      padding: 1rem 2rem;
       text-align: center;
+      border-bottom: 4px solid #d62828;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    header img {
-      width: 140px;
-      border-radius: 50%;
-      border: 4px solid #000;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2.5rem;
+    .logo-placeholder {
+      margin: 0 auto 0.5rem;
+      width: 80px;
+      height: 80px;
+      background: #000;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffbf00;
       font-weight: 800;
+      font-size: 1.5rem;
+      user-select: none;
+      cursor: default;
     }
-    h2 {
+    header h1 {
       font-size: 2rem;
-      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 0.2rem;
+    }
+    header p.verse {
+      font-style: italic;
+      font-weight: 600;
+      color: #d62828;
+      font-size: 1rem;
+    }
+    /* Navigation */
+    nav {
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+      user-select: none;
+      position: sticky;
+      top: 80px; /* height of header */
+      z-index: 900;
+    }
+    nav ul.main-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+    nav ul.main-menu > li {
+      position: relative;
+    }
+    nav ul.main-menu > li > a {
+      display: block;
+      padding: 1rem 0;
+      color: #ffbf00;
+      transition: color 0.3s ease;
+    }
+    nav ul.main-menu > li:hover > a,
+    nav ul.main-menu > li:focus-within > a {
       color: #d62828;
     }
-    .section {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
+    /* Dropdown menus */
+    nav ul.submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #000;
+      min-width: 180px;
+      border-top: 3px solid #d62828;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
-    .projects ul {
-      padding-left: 1.5rem;
+    nav ul.main-menu > li:hover > ul.submenu,
+    nav ul.main-menu > li:focus-within > ul.submenu {
+      display: flex;
     }
-    .projects li a {
-      color: #1d4ed8;
-      text-decoration: none;
+    nav ul.submenu li a {
+      padding: 0.8rem 1rem;
+      color: #ffbf00;
+      border-bottom: 1px solid #222;
+      transition: background 0.3s ease;
     }
-    .contact a {
-      color: #dc2626;
-      text-decoration: none;
+    nav ul.submenu li a:hover,
+    nav ul.submenu li a:focus {
+      background: #d62828;
+      color: #fff;
     }
-    .social a {
-      margin-right: 15px;
-      text-decoration: none;
+    /* Mobile toggle */
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffbf00;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      nav ul.main-menu {
+        flex-direction: column;
+        display: none;
+      }
+      nav ul.main-menu.show {
+        display: flex;
+      }
+      nav ul.main-menu > li {
+        width: 100%;
+      }
+      nav ul.submenu {
+        position: relative;
+        top: 0;
+        border: none;
+        box-shadow: none;
+      }
+      nav ul.submenu li a {
+        border: none;
+      }
+      .mobile-menu-button {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3rem;
+    }
+    section h2 {
+      color: #d62828;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #ffbf00;
+      padding-bottom: 0.3rem;
+      font-weight: 700;
+    }
+    /* About Me sub */
+    .about-subsection {
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    .about-subsection h3 {
       color: #000;
       font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
+
+    /* Projects */
+    .projects ul {
+      list-style: disc inside;
+    }
+    .projects ul li a {
+      color: #d62828;
+      font-weight: 600;
+    }
+    .projects ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Blog preview */
+    .blog-article {
+      background: #fff7cc;
+      padding: 1rem 1.5rem;
+      border: 2px solid #d62828;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgb(214 40 40 / 0.2);
+    }
+    .blog-article h3 {
+      margin-bottom: 0.5rem;
+      color: #d62828;
+    }
+    .blog-article p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+    .blog-article a.read-more {
+      font-weight: 700;
+      color: #000;
+      border: 2px solid #d62828;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+    .blog-article a.read-more:hover {
+      background-color: #d62828;
+      color: #fff;
+    }
+
+    /* Media galleries */
+    .gallery {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 4px 12px rgba(214,40,40,0.6);
+    }
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+      margin-bottom: 1rem;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Contact */
+    .contact-info p, .contact-info a {
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 0.5rem;
+    }
+    .social-links a {
+      margin-right: 1rem;
+      font-weight: 700;
+      color: #d62828;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #000;
+    }
+
+    /* Footer */
     footer {
+      background: #1f2937;
+      color: #fff;
       text-align: center;
-      padding: 2rem;
-      background-color: #1f2937;
-      color: white;
+      padding: 1rem 0;
       font-size: 0.9rem;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.ibb.co/W2gy4WP/african-youth.jpg" alt="Jakeskan Profile" />
+    <div class="logo-placeholder" aria-label="Logo Placeholder">JK</div>
     <h1>Jakeskan</h1>
-    <p>Faithful. Purposeful. A bridge between generations and cultures.</p>
+    <p class="verse">“Teach us to number our days, that we may gain a heart of wisdom.”</p>
   </header>
 
-  <section class="section about">
-    <h2>About Me</h2>
-    <p>
-      I’m Kanyuira Jakes, a passionate servant-leader from Kenya currently pursuing a Master of Divinity at Chongshin University in South Korea. My focus lies in youth ministry, discipleship, and cross-cultural leadership. Through volunteering and intercultural engagement, I aim to create spaces where young people feel seen, valued, and empowered to rise.
-    </p>
-  </section>
-
-  <section class="section blog">
-    <h2>Ministry Passion</h2>
-    <p>
-      Ministry, for me, is more than teaching — it’s relational, restorative, and reflective of Christ’s humility. I believe in the transformative power of intentional presence: listening, mentoring, and leading with authenticity. My heart beats for Africa's young generation, where I see visionaries, change-makers, and faithful witnesses rising in every nation.
-    </p>
-  </section>
-
-  <section class="section projects">
-    <h2>Projects & Links</h2>
-    <ul>
-      <li>
-        <a href="https://www.linkedin.com/posts/kanyuira-jake-119440153_i-am-deeply-humbled-and-honored-to-have-been-activity-7261645037157945344-p3qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAACTn5KUBmvbBa45e0PldHq42lUJK_MxZGQQ" target="_blank">
-          LinkedIn: Recognized for Cultural Impact in Korea
-        </a>
+  <nav>
+    <button class="mobile-menu-button" aria-label="Toggle Menu" aria-expanded="false">&#9776;</button>
+    <ul class="main-menu" role="menubar">
+      <li role="none">
+        <a href="#about" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">About Me ▾</a>
+        <ul class="submenu" role="menu" aria-label="About Me submenu">
+          <li role="none"><a href="#journey" role="menuitem" tabindex="-1">Journey &amp; Calling</a></li>
+          <li role="none"><a href="#vision" role="menuitem" tabindex="-1">Vision &amp; Values</a></li>
+        </ul>
       </li>
+      <li role="none"><a href="#ministry" role="menuitem" tabindex="0">My Ministry</a></li>
+      <li role="none"><a href="#projects" role="menuitem" tabindex="0">Projects</a></li>
+      <li role="none">
+        <a href="#media" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Media ▾</a>
+        <ul class="submenu" role="menu" aria-label="Media submenu">
+          <li role="none"><a href="#photos" role="menuitem" tabindex="-1">Photos</a></li>
+          <li role="none"><a href="#videos" role="menuitem" tabindex="-1">Videos</a></li>
+        </ul>
+      </li>
+      <li role="none"><a href="#blog" role="menuitem" tabindex="0">Blog</a></li>
+      <li role="none"><a href="#contact" role="menuitem" tabindex="0">Contact</a></li>
     </ul>
-  </section>
+  </nav>
 
-  <section class="section contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:jakeskan@gmail.com">jakeskan@gmail.com</a></p>
-    <p>Phone (KR): 010-1234-5678</p>
-    <div class="social">
-      <a href="https://facebook.com/kanyuira.jakes" target="_blank">Facebook</a>
-      <a href="https://instagram.com/kanyuira.jakes" target="_blank">Instagram</a>
-    </div>
-  </section>
+  <main>
+    <!-- About Me -->
+    <section id="about">
+      <h2>About Me</h2>
+
+      <div id="journey" class="about-subsection">
+        <h3>Journey &amp; Calling</h3>
+        <p>I am passionate about leadership, ministry, and bridging cultures through meaningful connections and social impact.</p>
+      </div>
+
+      <div id="vision" class="about-subsection">
+        <h3>Vision &amp; Values</h3>
+        <p>My vision is to empower youth and communities to embrace diversity, pursue wisdom, and live with purpose rooted in faith.</p>
+      </div>
+    </section>
+
+    <!-- My Ministry -->
+    <section id="ministry">
+      <h2>My Ministry</h2>
+      <p>Committed to discipleship, youth leadership, and community transformation through the gospel and practical outreach programs.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="#">Youth Leadership Training Program</a></li>
+        <li><a href="#">Cross-cultural Exchange Initiatives</a></li>
+        <li><a href="#">Community Development & Social Justice Campaigns</a></li>
+      </ul>
+    </section>
+
+    <!-- Media -->
+    <section id="media">
+      <h2>Media</h2>
+
+      <h3 id="photos">Photo Gallery</h3>
+      <div class="gallery">
+        <img src="https://source.unsplash.com/featured/?african-youth,portrait" alt="African youth portrait 1" />
+        <img src="https://source.unsplash.com/featured/?africa,culture" alt="African culture 2" />
+        <img src="https://source.unsplash.com/featured/?african-youth,smiling" alt="Smiling African youth 3" />
+        <img src="https://source.unsplash.com/featured/?africa,community" alt="African community 4" />
+        <img src="https://source.unsplash.com/featured/?african-landscape" alt="African landscape 5" />
+        <img src="https://source.unsplash.com/featured/?african-traditional" alt="Traditional African attire 6" />
+      </div>
+
+      <h3 id="videos">Video Gallery</h3>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/3jZ5vnv-LZc" title="Inspirational Video 1" allowfullscreen></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Inspirational Video 2" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <article class="blog-article">
+        <h3>My UN Regrettable Lapid Gap Experience</h3>
+        <p>By Jakkes Kanyuira — A personal recount of my experience navigating challenges and growth during the UN Lapid Gap program.</p>
+        <a class="read-more" href="https://medium.com/@jakkeskanyuira/my-un-regrettable-lapid-gap-experience-e539641e8a9" target="_blank" rel="noopener noreferrer">Read full article on Medium</a>
+      </article>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:jakkes@example.com">jakkes@example.com</a></p>
+        <p>Phone: +254 700 123 456</p>
+        <p>Follow me:</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="Twitter">Twitter</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 Jakeskan. Built with faith, hope & purpose.
+    <p>&copy; 2025 Jakeskan. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.mobile-menu-button');
+    const mainMenu = document.querySelector('nav ul.main-menu');
+
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !isExpanded);
+      mainMenu.classList.toggle('show');
+    });
+
+    // Accessibility: submenu keyboard support (optional enhancement)
+  </script>
 </body>
 </html>
